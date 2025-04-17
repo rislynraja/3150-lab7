@@ -1,22 +1,21 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "lab7.h"
 #include "./include/doctest.h"
-
+#include "lab7.h"
 
 TEST_CASE("testing_bigint_product") {
   std::pair<bigint, bigint> t1 = std::make_pair(bigint("123456789123456789"), bigint("987654321987654321"));
   std::pair<bigint, bigint> t2 = std::make_pair(bigint("111111111111111111"), bigint("222222222222222222"));
   std::pair<bigint, bigint> a1 = myproduct(t1, t2);
-  CHECK(a1.first == bigint("13717420986282578913717420986282579"));
-  CHECK(a1.second == bigint("219478737297256132112482853738104662"));
+  CHECK(a1.first == bigint("13717421013717420986282578986282579"));
+  CHECK(a1.second == bigint("219478738219478737780521261780521262"));
 }
 
 TEST_CASE("testing_bigint_sum") {
-  std::pair<bigint, bigint> t1 = std::make_pair(bigint("123456789123456789"), bigint("987654321987654321"));
-  std::pair<bigint, bigint> t2 = std::make_pair(bigint("111111111111111111"), bigint("222222222222222222"));
-  std::pair<bigint, bigint> a1 = mysum(t1, t2);
-  CHECK(a1.first == bigint("234567900234567900"));
-  CHECK(a1.second == bigint("1209876544209876543"));
+  std::pair<bigint, bigint> s1 = std::make_pair(bigint("123456789123456789"), bigint("987654321987654321"));
+  std::pair<bigint, bigint> s2 = std::make_pair(bigint("111111111111111111"), bigint("222222222222222222"));
+  std::pair<bigint, bigint> s3 = mysum(s1, s2);
+  CHECK(s3.first == bigint("137174211137174210862825788862825789"));
+  CHECK(s3.second == bigint("219478738219478737780521261780521262"));
 
 }
 
@@ -29,10 +28,6 @@ TEST_CASE("showing where approach fails with ints") {
 
   std::cout << "INT PRODUCT RESULT (likely overflow): " << num1 << "/" << den1 << std::endl;
   CHECK(num1 < 0); // shouldnt be positive since its overflowing
-
-  int a = 1000000000;
-  int b = 3;
-  int result = a / b; 
 
   std::pair<bigint, bigint> b1 = std::make_pair(bigint("123456789"), bigint("2"));
   std::pair<bigint, bigint> b2 = std::make_pair(bigint("987654321"), bigint("3"));
